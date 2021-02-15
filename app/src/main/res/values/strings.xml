@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ParkingAppProject</string>
+    <string name="password">password</string>
+    <string name="confirm_password">confirm_password</string>
+    <string name="create_account">create_account</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="car_plate_number">Car Plate Number</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="create__account">Create Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="remember_me">Remember me</string>
 </resources>
