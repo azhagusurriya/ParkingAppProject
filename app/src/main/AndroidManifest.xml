@@ -13,6 +13,7 @@
         android:theme="@style/Theme.ParkingAppProject" >
         <activity
             android:name=".DashboardMainActivity"
+            android:exported="true"
             android:label="@string/title_activity_dashboard_main" >
         </activity>
         <activity android:name=".activities.SignUpActivity" />

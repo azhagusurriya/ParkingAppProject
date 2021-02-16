@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:padding="35dp"
+    tools:context=".DashboardMainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,39 +22,50 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_name"
+        android:id="@+id/et_building_code"
         android:layout_marginTop="16dp"
         android:hint="Building Code"
         />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/sp_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         />
 
     <EditText
-        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_suite_num"
+        android:layout_marginTop="16dp"
+        android:hint="Suite Number"
+        />
+
+    <EditText
+        android:id="@+id/et_car_plate_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="#03A9F4"
-        android:hint="Street Name" />
+        android:hint="Car Number" />
+
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:id="@+id/et_age"
-        android:hint="Post Code"
+        android:id="@+id/et_parking_location"
+        android:hint="Parking location"
         />
-
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Book"
         android:layout_marginTop="16dp"
-        android:id="@+id/bt_add"
+        android:id="@+id/bt_book"
         />
 
 </LinearLayout>
