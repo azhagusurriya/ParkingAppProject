@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.parkingappproject.ui.dashboard.AddParkingFragment;
+import com.example.parkingappproject.ui.dashboard.ParkingListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public class DashboardMainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_viewparking_list:
 //                        toolbar.setTitle("View Parking List");
-//                        loadFragment(new ProfileFragment);
+                        loadFragment(new ParkingListFragment());
                         return true;
 
                 }
