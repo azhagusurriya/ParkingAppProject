@@ -10,4 +10,8 @@
     <string name="create__account">Create Account</string>
     <string name="sign_in">Sign In</string>
     <string name="remember_me">Remember me</string>
+    <string name="title_activity_dashboard_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
