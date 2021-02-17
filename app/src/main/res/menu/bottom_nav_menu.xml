@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/user"
-        android:title="Profile"/>
 
     <item
         android:id="@+id/navigation_add_parking"
         android:icon="@drawable/plus"
         android:title="Add Parking"/>
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/user"
+        android:title="Profile"/>
+
 
     <item
         android:id="@+id/navigation_viewparking_list"

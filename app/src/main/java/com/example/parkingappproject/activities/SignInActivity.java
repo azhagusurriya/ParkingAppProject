@@ -1,6 +1,9 @@
 package com.example.parkingappproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import android.content.Intent;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.parkingappproject.DashboardMainActivity;
 import com.example.parkingappproject.R;
+import com.example.parkingappproject.ui.dashboard.AddParkingFragment;
 import com.example.parkingappproject.viewmodels.UserViewModel;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
@@ -39,9 +43,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         this.tvCreateAccount.setOnClickListener(this);
 
         this.edtEmail = findViewById(R.id.edtEmail);
-        this.edtEmail.setText("surriyaraj@gmail.com");
+        this.edtEmail.setText("s@gmail.com");
         this.edtPassword = findViewById(R.id.edtPassword);
-        this.edtPassword.setText("surriya123");
+        this.edtPassword.setText("s");
 
         this.btnSignIn = findViewById(R.id.btnSignIn);
         this.btnSignIn.setOnClickListener(this);
@@ -71,6 +75,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         this.finish();
         Intent mainIntent = new Intent(this, DashboardMainActivity.class);
         startActivity(mainIntent);
+        
     }
     
 

@@ -23,7 +23,9 @@
         <activity
             android:name=".DashboardMainActivity"
             android:exported="true"
-            android:label="@string/title_activity_dashboard_main" />
+            android:label="@string/title_activity_dashboard_main" >
+        </activity>
+
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.SignInActivity">
             <intent-filter>
