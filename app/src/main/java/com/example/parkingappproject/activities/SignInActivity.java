@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.parkingappproject.DashboardMainActivity;
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.viewmodels.UserViewModel;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
 
     private final String TAG = this.getClass().getCanonicalName();
     private TextView tvCreateAccount;
@@ -37,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.tvCreateAccount.setOnClickListener(this);
 
         this.edtEmail = findViewById(R.id.edtEmail);
-        //this.edtEmail.setText("surriya@gmail.com");
+        this.edtEmail.setText("surriyaraj@gmail.com");
         this.edtPassword = findViewById(R.id.edtPassword);
-        //this.edtPassword.setText("surriya123");
+        this.edtPassword.setText("surriya123");
 
         this.btnSignIn = findViewById(R.id.btnSignIn);
         this.btnSignIn.setOnClickListener(this);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     progressBar.setVisibility(View.VISIBLE);
                 }else if(status.equals("FAILURE")){
                     progressBar.setVisibility(View.GONE);
+                    Log.d(TAG, "onChanged: Error Login");
                     Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG).show();
                 }
 
@@ -66,9 +69,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void goToParking(){
         this.finish();
-        Intent mainIntent = new Intent(this, MainActivity.class);
+        Intent mainIntent = new Intent(this, DashboardMainActivity.class);
         startActivity(mainIntent);
     }
+    
 
     @Override
     public void onClick(View view) {
@@ -84,12 +88,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         //verify the user
                         this.validateLogin();
+                            //go to main activity
+                            //this.goToAddParking();
+
                     }
                     break;
                 }
                 default: break;
             }
         }
+    }
+
+    private void goToAddParking(){
+        this.finish();
+        Intent mainIntent = new Intent(this, DashboardMainActivity.class);
+        startActivity(mainIntent);
     }
 
     private Boolean validateData() {
@@ -112,8 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = this.edtEmail.getText().toString();
         String password = this.edtPassword.getText().toString();
 
-
-        //ask the view model to verify the credentials
         this.userViewModel.validateUser(email, password);
+
     }
 }

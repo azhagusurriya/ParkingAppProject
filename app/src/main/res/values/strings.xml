@@ -2,7 +2,7 @@
     <string name="app_name">ParkingAppProject</string>
     <string name="password">password</string>
     <string name="confirm_password">confirm_password</string>
-    <string name="create_account">create_account</string>
+    <string name="create_account">Create Account</string>
     <string name="email">email</string>
     <string name="name">name</string>
     <string name="car_plate_number">Car Plate Number</string>
@@ -14,4 +14,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="update_account">Update Account</string>
+    <string name="update_parking">Update Parking</string>
+    <string name="delete_account">Delete Account</string>
 </resources>

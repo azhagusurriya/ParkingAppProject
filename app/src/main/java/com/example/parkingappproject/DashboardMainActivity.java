@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import com.example.parkingappproject.ui.dashboard.AddParkingFragment;
 import com.example.parkingappproject.ui.dashboard.ParkingListFragment;
+import com.example.parkingappproject.ui.dashboard.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,7 @@ public class DashboardMainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_profile:
 //                        toolbar.setTitle("Profile");
-//                        loadFragment(new ProfileFragment);
+                        loadFragment(new ProfileFragment());
                         return true;
                     case R.id.navigation_add_parking:
 //                        toolbar.setTitle("Add Parking");

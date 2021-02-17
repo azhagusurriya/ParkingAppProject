@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -19,6 +20,7 @@ public class UserRepository {
     private  final String TAG = this.getClass().getCanonicalName();
     private  final String COLLECTION_NAME = "users";
     private final FirebaseFirestore db;
+    public User newUserInfo = new User();
 
     public MutableLiveData<String> signInStatus = new MutableLiveData<String>();
     public MutableLiveData<String> loggedInUserID = new MutableLiveData<String>();
@@ -104,7 +106,80 @@ public class UserRepository {
             signInStatus.postValue("FAILURE");
         }
     }
-    
+
+    public void updateUser(User user){
+        try {
+            db.collection(COLLECTION_NAME)
+                    .document(loggedInUserID.getValue())
+                    .update(
+                        "name", user.getName(),
+                            "password", user.getPassword(),
+                            "contactNumber", user.getContactNumber(),
+                            "carPlateNumber", user.getCarPlateNumber()
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Log.d(TAG, "Document updated Successfully ");
+                    }
+                    else{
+                        Log.d(TAG, "Error Updating Document");
+                    }
+                    
+                }
+            });
+
+        }catch (Exception ex){
+            Log.e(TAG, ex.toString());
+            Log.e(TAG, ex.getLocalizedMessage());
+        }
+    }
+
+    public User getUpdateUserInfo(String userID){
+
+        db.collection(COLLECTION_NAME)
+                .document(userID)
+                .get()
+               .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                       if (task.isSuccessful()){
+
+                           DocumentSnapshot documentSnapshot = task.getResult();
+                           if(documentSnapshot !=null){
+
+                            newUserInfo = documentSnapshot.toObject(User.class);
+                               Log.d(TAG, "onComplete: Get user info details" + newUserInfo.getEmail());
+
+                           }
+
+                       }
+                       else{
+
+                       }
+                   }
+               });
+        
+        return newUserInfo;
+    }
+
+    public void deleteUser(String userID){
+        db.collection(COLLECTION_NAME)
+                .document(userID)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e(TAG, "Document deleted successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Failure deleting document");
+                    }
+                });
+    }
     
     
     
