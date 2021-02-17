@@ -65,8 +65,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     progressBar.setVisibility(View.VISIBLE);
                 }else if(status.equals("FAILURE")){
                     progressBar.setVisibility(View.GONE);
-                    Log.d(TAG, "onChanged: Error Login");
-                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onChanged: Error Login User");
+                    Toast.makeText(getApplication(),"Login Failed", Toast.LENGTH_LONG).show();
                 }
 
             }
