@@ -96,8 +96,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 }
                 case R.id.btnDeleteAccount:{
                     this.userViewModel.deleteUser(userID);
-                    Intent i = new Intent(getActivity(), SignInActivity.class);
+                   getActivity().finish();
+                    Intent i = new Intent(getContext(), SignInActivity.class);
                     startActivity(i);
+
+
 
                 }
                 default: 
