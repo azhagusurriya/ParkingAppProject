@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.parkingappproject.DashboardMainActivity;
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.activities.SignInActivity;
 import com.example.parkingappproject.activities.SignUpActivity;
@@ -95,6 +96,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 }
                 case R.id.btnDeleteAccount:{
                     this.userViewModel.deleteUser(userID);
+                   getActivity().finish();
                     Intent i = new Intent(getContext(), SignInActivity.class);
                     startActivity(i);
 

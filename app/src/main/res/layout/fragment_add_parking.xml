@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/teal_200"
     android:padding="35dp"
+    android:background="@color/teal_200"
     tools:context=".DashboardMainActivity">
+
 
     <TextView
         android:layout_width="wrap_content"

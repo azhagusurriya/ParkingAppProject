@@ -149,7 +149,7 @@ public class UserRepository {
                            if(documentSnapshot !=null){
 
                             newUserInfo = documentSnapshot.toObject(User.class);
-                               Log.d(TAG, "onComplete: Get user info details" + newUserInfo.getEmail());
+
 
                            }
 

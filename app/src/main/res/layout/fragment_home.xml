@@ -20,7 +20,7 @@
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:text="@string/update_parking">
+            android:text="Profile">
 
         </TextView>
 

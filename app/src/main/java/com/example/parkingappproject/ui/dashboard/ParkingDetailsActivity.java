@@ -1,5 +1,5 @@
 package com.example.parkingappproject.ui.dashboard;
-
+//Venkat 101287100
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -43,7 +43,7 @@ public class ParkingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 Intent intent1=new Intent(getApplicationContext(),MapActivity.class);
-intent.putExtra("SelectedParking",parking);
+intent1.putExtra("SelectedParking",parking);
 startActivity(intent1);
             }
         });
