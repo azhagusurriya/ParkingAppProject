@@ -72,7 +72,7 @@ public class DashboardMainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadFragment(new ProfileFragment());
+        loadFragment(new AddParkingFragment());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,14 +85,19 @@ public class DashboardMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
         case R.id.add:
             //add the function to perform here
-            this.userViewModel.getUserRepository().signInStatus.postValue("FAILURE");
-            finish();
-            Intent i=new Intent(getApplicationContext(),SignInActivity.class);
-            startActivity(i);
+            this.logout();
             return(true);
     }
         return(super.onOptionsItemSelected(item));
     }
+    
+    public void logout(){
+        this.userViewModel.getUserRepository().signInStatus.postValue("FAILURE");
+        finish();
+        Intent i=new Intent(getApplicationContext(),SignInActivity.class);
+        startActivity(i);
+    }
+    
 
     private void loadFragment(Fragment fragment) {
         // load fragment

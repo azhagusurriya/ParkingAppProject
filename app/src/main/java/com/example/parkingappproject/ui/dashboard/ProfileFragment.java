@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     private UserViewModel userViewModel;
     private User userInfo;
     private String userID;
+    private DashboardMainActivity dashboardMainActivity;
 
 
 
@@ -67,6 +68,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
         userInfo =  this.userViewModel.getUpdateUserInfo(userID);
 
+        this.tvEmail.setText(this.userViewModel.getUserRepository().newUserInfo.getEmail());
+        this.edtCarPlateNumber.setText(this.userViewModel.getUserRepository().newUserInfo.getCarPlateNumber());
+        this.edtConfirmPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());
+        this.edtPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());
+        this.edtName.setText(this.userViewModel.getUserRepository().newUserInfo.getName());
+        this.edtContactNumber.setText(this.userViewModel.getUserRepository().newUserInfo.getContactNumber());
 
         return root;
     }
@@ -96,11 +103,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 }
                 case R.id.btnDeleteAccount:{
                     this.userViewModel.deleteUser(userID);
-                   getActivity().finish();
-                    Intent i = new Intent(getContext(), SignInActivity.class);
-                    startActivity(i);
-
-
+                    dashboardMainActivity.logout();
 
                 }
                 default: 

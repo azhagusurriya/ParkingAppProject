@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.parkingappproject.DashboardMainActivity;
 import com.example.parkingappproject.R;
+import com.example.parkingappproject.models.User;
 import com.example.parkingappproject.ui.dashboard.AddParkingFragment;
 import com.example.parkingappproject.viewmodels.UserViewModel;
 
@@ -30,6 +31,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSignIn;
     private ProgressBar progressBar;
     private UserViewModel userViewModel;
+    private User userInfo;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

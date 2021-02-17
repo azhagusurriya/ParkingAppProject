@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.models.Parkings;
 import com.example.parkingappproject.ui.dashboard.Adapters.ParkingListAdapter;
+import com.example.parkingappproject.viewmodels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,15 +28,21 @@ import java.util.List;
 public class ParkingListFragment extends Fragment implements ParkingListAdapter.onListClickListener{
 
     private RecyclerView parkingRecyclerview;
+    private final String COLLECTION_NAME_USERS = "users";
+    private final String COLLECTION_NAME_PARKING = "parkings";
+    private String userID;
     private ParkingListAdapter parkingListAdapter;
     private List<Parkings> parkingsArrayList=new ArrayList<>();
     private FirebaseFirestore db;
+    private UserViewModel userViewModel;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_parking_list, container, false);
         db = FirebaseFirestore.getInstance();
-        readDataFirebase();
+        this.userViewModel = UserViewModel.getInstance();
+        userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
+        readDataFirebase(userID);
         parkingRecyclerview=root.findViewById(R.id.parkingRecyclerview);
         parkingRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -54,9 +61,11 @@ public class ParkingListFragment extends Fragment implements ParkingListAdapter.
 
     }
 
-    private void readDataFirebase(){
+    private void readDataFirebase(String userID){
 
-        db.collection("Parkings")
+        db.collection(COLLECTION_NAME_USERS)
+                .document(userID)
+                .collection(COLLECTION_NAME_PARKING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

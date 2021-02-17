@@ -28,6 +28,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.models.Parkings;
+import com.example.parkingappproject.viewmodels.UserViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -53,6 +54,10 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
     private String currentDateTime;
     private double latitude;
     private double longitude;
+    private String userID;
+    private UserViewModel userViewModel;
+    private final String COLLECTION_NAME_USERS = "users";
+    private final String COLLECTION_NAME_PARKING = "parkings";
 
     private ArrayList<String> spinnerArrayList=new ArrayList<>();
     private ArrayAdapter spinnerAdapter;
@@ -65,6 +70,7 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
 
         View root = inflater.inflate(R.layout.fragment_add_parking, container, false);
 
+        this.userViewModel = UserViewModel.getInstance();
         db = FirebaseFirestore.getInstance();
         et_buildingcode=root.findViewById(R.id.et_building_code);
         et_car_plate_num=root.findViewById(R.id.et_car_plate_num);
@@ -72,6 +78,7 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
         et_parking_location=root.findViewById(R.id.et_parking_location);
         bt_book=root.findViewById(R.id.bt_book);
         sp_time=root.findViewById(R.id.sp_time);
+
 
         spinnerArrayList.add("Select hours...");
         spinnerArrayList.add("1 hour or less");
@@ -83,6 +90,8 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
         sp_time.setAdapter(spinnerAdapter);
+
+        userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
 
         sp_time.setOnItemSelectedListener(this);
        bt_book.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +165,7 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
                             p.setLongitude(longitude);
                             p.setDate(currentDateTime);
 
-                            storeFirebase(p);
+                            storeFirebase(p, userID);
 
 
                         }
@@ -194,9 +203,11 @@ public class AddParkingFragment extends Fragment implements AdapterView.OnItemSe
         Toast.makeText(getContext(), ""+currentDateTime, Toast.LENGTH_SHORT).show();
     }
 
-    private void storeFirebase(Parkings parkings){
+    private void storeFirebase(Parkings parkings, String userID){
         // Add a new document with a generated ID
-        db.collection("Parkings")
+        db.collection(COLLECTION_NAME_USERS)
+                .document(userID)
+                .collection(COLLECTION_NAME_PARKING)
                 .add(parkings)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

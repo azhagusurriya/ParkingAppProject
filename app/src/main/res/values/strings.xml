@@ -17,4 +17,6 @@
     <string name="update_account">Update Account</string>
     <string name="update_parking">Update Parking</string>
     <string name="delete_account">Delete Account</string>
+    <string name="log_in">Log In</string>
+    <string name="already_a_user">Already a user ?</string>
 </resources>

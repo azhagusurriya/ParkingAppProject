@@ -92,10 +92,35 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/edtCarPlateNumber" />
+
+    <TextView
+        android:id="@+id/tvLoginText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/already_a_user"
+        android:textAlignment="textEnd"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+        app:layout_constraintRight_toLeftOf="@+id/tvLogin"/>
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/log_in"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

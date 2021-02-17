@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.models.User;
@@ -16,6 +17,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private final String TAG = this.getClass().getCanonicalName();
     private Button btnCreateAccount;
+    private TextView tvLogin;
     private EditText edtEmail;
     private EditText edtPassword;
     private EditText edtConfirmPassword;
@@ -34,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         this.userViewModel = UserViewModel.getInstance();
 
+
         this.edtEmail = findViewById(R.id.edtEmail);
         this.edtPassword = findViewById(R.id.edtPassword);
         this.edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
@@ -42,6 +45,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         this.edtCarPlateNumber = findViewById(R.id.edtCarPlateNumber);
         this.btnCreateAccount = findViewById(R.id.btnCreateAccount);
         this.btnCreateAccount.setOnClickListener(this);
+        this.tvLogin = findViewById(R.id.tvLogin);
+        this.tvLogin.setOnClickListener(this);
 
     }
 
@@ -50,6 +55,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         if( view != null){
             switch (view.getId()){
+                case R.id.tvLogin:{
+                    Intent signUpIntent = new Intent(this, SignInActivity.class);
+                    startActivity(signUpIntent);
+                    break;
+                }
                 case R.id.btnCreateAccount: {
                     if (this.validateData()){
                         //save data to database
@@ -59,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         this.goToMain();
                     }
                 }
+
                 default:
                     break;
             }
