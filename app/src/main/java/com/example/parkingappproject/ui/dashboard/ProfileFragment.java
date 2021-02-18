@@ -68,13 +68,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
         userInfo =  this.userViewModel.getUpdateUserInfo(userID);
 
-        this.tvEmail.setText(this.userViewModel.getUserRepository().newUserInfo.getEmail());
+        /*this.tvEmail.setText(this.userViewModel.getUserRepository().newUserInfo.getEmail());
         this.edtCarPlateNumber.setText(this.userViewModel.getUserRepository().newUserInfo.getCarPlateNumber());
         this.edtConfirmPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());
         this.edtPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());
         this.edtName.setText(this.userViewModel.getUserRepository().newUserInfo.getName());
         this.edtContactNumber.setText(this.userViewModel.getUserRepository().newUserInfo.getContactNumber());
-
+*/
         return root;
     }
 
@@ -87,7 +87,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
                         this.updateUserToDB();
 
-                        Toast.makeText(getContext(),"Profile Updated Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Profile Updated Successfully",Toast.LENGTH_LONG).show();
+                        
                         Fragment fragment = new AddParkingFragment();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -103,7 +104,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 }
                 case R.id.btnDeleteAccount:{
                     this.userViewModel.deleteUser(userID);
-                    dashboardMainActivity.logout();
+                    Intent i=new Intent((DashboardMainActivity) getActivity(),SignInActivity.class);
+                    startActivity(i);
+                    //dashboardMainActivity.logout();
 
                 }
                 default: 
@@ -117,7 +120,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         Log.d(TAG, "onCreateView: user info in the profile fragment: " +userInfo.getEmail());
 
         if(userInfo != null) {
-            this.tvEmail.setText(this.userViewModel.getUserRepository().newUserInfo.getEmail());
+            this.tvEmail.setText("E-mail: " + this.userViewModel.getUserRepository().newUserInfo.getEmail());
             this.edtCarPlateNumber.setText(this.userViewModel.getUserRepository().newUserInfo.getCarPlateNumber());
             this.edtConfirmPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());
             this.edtPassword.setText(this.userViewModel.getUserRepository().newUserInfo.getPassword());

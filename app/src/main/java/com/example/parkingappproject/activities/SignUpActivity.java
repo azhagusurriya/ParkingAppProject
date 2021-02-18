@@ -1,13 +1,16 @@
 package com.example.parkingappproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.parkingappproject.R;
 import com.example.parkingappproject.models.User;
@@ -48,6 +51,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         this.tvLogin = findViewById(R.id.tvLogin);
         this.tvLogin.setOnClickListener(this);
 
+        this.userViewModel.getUserRepository().userExistStatus.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String status) {
+                if(status.equals("NOT EXIST")){
+                    //save data to database
+                    saveUserToDB();
+                    
+                    goToMain();
+                    userViewModel.getUserRepository().userExistStatus.postValue("");
+                    
+                }else if (status.equals("EXIST")){
+
+                    Log.d(TAG, "onChanged: User Already Exist");
+                    edtEmail.setError("User Already Exist");
+                    userViewModel.getUserRepository().userExistStatus.postValue("");
+                }
+            }
+        });
+
     }
 
     @Override
@@ -62,11 +84,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 case R.id.btnCreateAccount: {
                     if (this.validateData()){
-                        //save data to database
-                        this.saveUserToDB();
-
-                        //go to main activity
-                        this.goToMain();
+                        
+                        //check user already exist
+                        this.checkUser();
+                        
                     }
                 }
 
@@ -75,6 +96,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
 
+    }
+    
+    private void checkUser(){
+        this.userViewModel.checkUser(this.edtEmail.getText().toString());
+        
     }
 
     private void saveUserToDB(){

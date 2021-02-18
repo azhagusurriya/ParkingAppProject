@@ -40,6 +40,10 @@ public class UserViewModel extends ViewModel {
         this.userRepository.deleteUser(userID);
     }
 
+    public void checkUser(String email){
+        this.userRepository.checkUser(email);
+    }
+
     public User getUpdateUserInfo(String userID){
        User user =  this.userRepository.getUpdateUserInfo(userID);
         Log.d(TAG, "getUpdateUserInfo: User info in view model: " + user.getEmail());

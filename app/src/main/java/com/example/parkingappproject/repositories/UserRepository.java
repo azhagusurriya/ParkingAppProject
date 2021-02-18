@@ -23,6 +23,7 @@ public class UserRepository {
     public User newUserInfo = new User();
 
     public MutableLiveData<String> signInStatus = new MutableLiveData<String>();
+    public MutableLiveData<String> userExistStatus = new MutableLiveData<String>();
     public MutableLiveData<String> loggedInUserID = new MutableLiveData<String>();
 
     public  UserRepository(){
@@ -104,6 +105,41 @@ public class UserRepository {
             Log.e(TAG, ex.toString());
             Log.e(TAG, ex.getLocalizedMessage());
             signInStatus.postValue("FAILURE");
+        }
+    }
+
+    public void checkUser(String email){
+
+        this.userExistStatus.postValue("LOADING");
+
+        try{
+            db.collection(COLLECTION_NAME)
+                    .whereEqualTo("email", email)
+                    // .whereEqualTo("password",password)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()){
+
+                                if (task.getResult().getDocuments().size() != 0){
+                                    userExistStatus.postValue("EXIST");
+                                }
+                                else{
+                                    userExistStatus.postValue("NOT EXIST");
+                                }
+
+
+                            }else{
+                                Log.e(TAG, "Error fetching document" + task.getException());
+                                userExistStatus.postValue("NOT EXIST");
+                            }
+                        }
+                    });
+        }catch (Exception ex){
+            Log.e(TAG, ex.toString());
+            Log.e(TAG, ex.getLocalizedMessage());
+            userExistStatus.postValue("NOT EXIST");
         }
     }
 

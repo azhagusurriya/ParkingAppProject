@@ -98,7 +98,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         this.validateLogin();
                             //go to main activity
                             //this.goToAddParking();
-
                     }
                     break;
                 }

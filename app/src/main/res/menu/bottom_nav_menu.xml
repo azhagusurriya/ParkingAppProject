@@ -8,14 +8,15 @@
         android:title="Add Parking"/>
 
     <item
+        android:id="@+id/navigation_viewparking_list"
+        android:icon="@drawable/file"
+        android:title="View List"/>
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/user"
         android:title="Profile"/>
 
 
-    <item
-        android:id="@+id/navigation_viewparking_list"
-        android:icon="@drawable/file"
-        android:title="View List"/>
 
 </menu>
